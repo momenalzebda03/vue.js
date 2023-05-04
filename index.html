@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+
+<body>
+    <div id="div_vue" style="text-transform: capitalize;">
+        <h1>welcome to vue.js course</h1>
+        <p>welcome mr {{name}} we are happy to see you.</p>
+        <p>your age is : {{age}} years</p>
+        <p>your first skills is: {{array_skills[0]}}</p>
+        <p>your age is : {{subscribed == true ? "subscribed" : "not subscribed"}}</p>
+        <p>your first test name is: {{my_boject[0].test}}</p>
+        <p>your first result name is: {{my_boject[0].result}}</p>
+        <p>the age day is {{day()}}</p>
+        <p v-text="name"></p>
+        <p v-html="my_html"></p>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    var viewmodel = new Vue({
+        el: "#div_vue",
+        data: {
+            my_html: "<div style='color: red;'>vue.js</div>",
+            name: "momen",
+            age: 20,
+            array_skills: ["html", "css", "sass", "bootstraip", "js", "vue"],
+            subscribed: false,
+            my_boject: [
+                {
+                    test: "one test",
+                    result: "80%"
+                },
+                {
+                    test: "tow test",
+                    result: "70%"
+                },
+                {
+                    test: "one test",
+                    result: "90%"
+                }
+            ]
+        },
+        methods: {
+            day: function () {
+                return this.age * 365;
+            }
+        }
+    })
+</script>
+
+</html>
