@@ -20,15 +20,62 @@
         <p>the age day is {{day()}}</p>
         <p v-text="name"></p>
         <p v-html="my_html"></p>
+        <a href="#" v-for="(skill, index) in array_skills">{{index + " " + skill}}<br></a>
+        <br>
+        <a href="#" v-for="object in my_boject">{{object.test}} {{object.result}}<br></a>
+        <span v-for="num in age">{{num}}<br></span>
+        <form action="">
+            <input type="text" v-model:value="purchase_value">
+        </form>
+        <p>{{purchase_value}}</p>
+        <p v-if="purchase_value < 100">0%</p>
+        <p v-else-if="purchase_value >= 100 && purchase_value < 300">5%</p>
+        <p v-else-if="purchase_value >= 300 && purchase_value < 500">10%</p>
+        <p v-else-if="purchase_value >= 500">15%</p>
+        <p v-else="purchase_value">اسف لا توجد قيمة</p>
+        <a :href="link">link</a>
+        <p>{{number}}</p>
+        <button @click="number += 2">click</button>
+        <kpapkasy v-for="object in my_boject" :test="object.test" :result="object.result"></kpapkasy>
+        <kpa-pitem></kpa-pitem>
+        <comp-cpap></comp-cpap>
     </div>
 </body>
 <script src="js/vue.js"></script>
 <script>
+    Vue.component("kpapkasy", {
+        data: () => {
+            return {
+
+            }
+        },
+        props: ["test", "result"],
+        template: "<p>the test is {{test}} the result is {{result}}</p>"
+    })
+    var KpaPitem = {
+        data: () => {
+            return {
+
+            }
+        },
+        template: "<h1>item 1</h1>"
+    }
+    var CompCpap = {
+        data: () => {
+            return {
+
+            }
+        },
+        template: "<h1>item 2</h1>"
+    }
     var viewmodel = new Vue({
         el: "#div_vue",
         data: {
+            number: 0,
+            link: "https://www.google.com",
             my_html: "<div style='color: red;'>vue.js</div>",
             name: "momen",
+            purchase_value: "",
             age: 20,
             array_skills: ["html", "css", "sass", "bootstraip", "js", "vue"],
             subscribed: false,
@@ -51,8 +98,12 @@
             day: function () {
                 return this.age * 365;
             }
+        },
+        components: {
+            "kpa-pitem": KpaPitem,
+            "comp-cpap": CompCpap
         }
-    })
+    })    
 </script>
 
 </html>
